@@ -1,0 +1,15 @@
+public class Main {
+    public static void main (String[] args) {
+        String a = "abc";
+        String b = "bc";
+        if (end (a, b)) {
+            System.out.println ("True");
+        }
+        else {
+            System.out.println ("False");
+        }
+    }
+    public static boolean end (String a, String b) {
+        return a.endsWith(b);
+    }
+}
