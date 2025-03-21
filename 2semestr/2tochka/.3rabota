@@ -1,0 +1,8 @@
+public class Main {
+    public static void main (String[] args) {
+        String a = "Я в шоке, я пишу какой-то код";
+        String b = "";
+        b = a.replaceAll ("[аА оО уУ иИ ыЫ эЭ ёЁ еЕ юЮ яЯ]", " ");
+        System.out.println (b);
+    }
+}
