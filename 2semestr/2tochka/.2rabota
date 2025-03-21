@@ -1,0 +1,10 @@
+public class Main {
+    public static void main (String[] args) {
+        String a = "аНнА";
+        String a1 = "аНнА".replaceAll ("а", "");
+        String b = a1.toLowerCase();
+        String c = "А";
+        String d = c + b;
+        System.out.println ("Привет, " + d + "!");
+    }
+}
