@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class Main {
+    public static void main (String[] args) {
+        Scanner a = new Scanner (System.in);
+        int [] m = {0, 0, 0};
+        while (true) {
+            System.out.println ("Введите число >-1: ");
+            int x = a.nextInt();
+            if (x == -1) break;
+            boolean p = false;
+            for (int i = 0; i < 3; i++){
+                if (m[i] == 0) {
+                    m[i] = x;
+                    p = true;
+                    break;
+                }
+            }
+            if (!p) {
+                int y = 0;
+                for (int i = 1; i < 3; i++) {
+                    if (m[i] < m[y]) {
+                        y = i;
+                    }
+                }
+                m[y] = x;
+            }
+        System.out.println (m[0] + " " + m[1] + " " + m[2]);
+        }
+        a.close();
+    }
+}
