@@ -1,0 +1,15 @@
+import java.util.Scanner;
+public class Main {
+    public static void main (String[] args) {
+        Scanner a = new Scanner (System.in);
+        System.out.println ("Введите три числа: ");
+        int x = a.nextInt ();
+        int y = a.nextInt ();
+        int z = a.nextInt ();
+        a.close ();
+        for (int i = 0; i < z; i++) {
+            int b = x + (i * y);
+            System.out.println (b + " ");
+        }
+    }
+}
