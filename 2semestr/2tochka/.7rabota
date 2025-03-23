@@ -1,0 +1,18 @@
+import java.util.Scanner;
+import java.util.Set;
+import java.util.LinkedHashSet;
+public class Main {
+    public static void main(String[] args) {
+        Scanner a = new Scanner (System.in);
+        System.out.println("Введите строку: ");
+        String b = a.nextLine();
+        String[] s = b.split(" ");
+        Set<String> s1 = new LinkedHashSet<>();
+        for (String c: s) {
+            s1.add(c);
+        }
+        String s2 = String.join(" ", s1);
+        System.out.println(s2);
+        a.close();
+    }
+}
