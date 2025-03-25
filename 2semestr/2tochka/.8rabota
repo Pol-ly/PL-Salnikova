@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner a = new Scanner (System.in);
+        System.out.println("Введите строку: ");
+        String b = a.nextLine();
+        a.close();
+        int x = 0;
+        int y = 0;
+        for (char c: b.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                x++;
+            }
+            else if (Character.isLowerCase(c)) {
+                y++;
+            }
+        }
+        String s1;
+        if (x > y) {
+            s1 = b.toUpperCase ();
+        }
+        else {
+            s1 = b.toLowerCase ();
+        }
+        System.out.println(s1);
+    }
+}
