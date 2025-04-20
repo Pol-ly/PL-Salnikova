@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите число 0<n<100000: ");
+        int n = scanner.nextInt();
+        if (n <= 0 || n >= 100000) {
+            System.out.println("Число не подходит, диапазон указан ранее, попробуйте ещё раз.");
+            return;
+        }
+        if (rathniza(n)) {
+            System.out.println(n + " является разницей двух последовательных квадратов.");
+        } else {
+            System.out.println(n + " не является разницей двух последовательных квадратов.");
+        }
+    }
+    public static boolean rathniza(int n) {
+        return (n % 2 != 0) || (n % 4 == 0);
+    }
+}
