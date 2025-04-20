@@ -1,0 +1,33 @@
+import java.util.Scanner;
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in, "UTF-8");
+        System.out.println("Строка для шифрования: ");
+        String stroka = scanner.nextLine();
+        System.out.println("Сдвиг: ");
+        int sdwig = scanner.nextInt();
+        String shifr = shifrRussian(stroka, sdwig);
+        System.out.println("Зашифрованная строка: " + shifr);
+        scanner.close();
+    }
+    public static String shifrRussian(String stroka, int sdwig) {
+        StringBuilder result = new StringBuilder();
+        int RusAlphabet = 33;
+        sdwig = sdwig % RusAlphabet;
+        for (char character : stroka.toCharArray()) {
+            if (Rus(character)) {
+                char bukva = Character.isUpperCase(character) ? 'А' : 'а';
+                int oldPosition = character - bukva;
+                int newPosition = (oldPosition + sdwig + RusAlphabet) % RusAlphabet;
+                char encryptedChar = (char) (bukva + newPosition);
+                result.append(encryptedChar);
+            } else {
+                result.append(character);
+            }
+        }
+        return result.toString();
+    }
+    public static boolean Rus(char c) {
+        return (c >= 'А' && c <= 'Я') || (c >= 'а' && c <= 'я') || c == 'Ё' || c == 'ё';
+    }
+}
