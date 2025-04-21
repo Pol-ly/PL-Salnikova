@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.List;
+public class Main{
+    public static Integer main(int Max, int city, List<Integer> dlina) {
+        if (city > dlina.size()){
+            return null;
+        }
+        List<List<Integer>> chisla = generate(dlina, city);
+        int best = -1;
+        for (List<Integer> combo : chisla){
+            int sum = combo.stream().mapToInt(Integer::intValue).sum();
+            if (sum <= Max && sum > best){
+                best = sum;
+            }
+        }
+        return best == -1 ? null : best;
+    }
+    private static List<List<Integer>> generate(List<Integer> list, int n){
+        List<List<Integer>> result = new ArrayList<>();
+        generatehelp(list, n, 0, new ArrayList<>(), result);
+        return result;
+    }
+    private static void generatehelp(List<Integer> list, int a, int start, List<Integer> cur, List<List<Integer>> result){
+        if (cur.size() == a) {
+            result.add(new ArrayList<>(cur));
+            return;
+        }
+        for (int i = start; i < list.size(); i++){
+            cur.add(list.get(i));
+            generatehelp(list, a, i + 1, cur, result);
+            cur.remove(cur.size() - 1);
+        }
+    }
+    public static void main(String[] args) {
+        List<Integer> distances = List.of(50, 55, 57, 58, 60);
+        Integer result = main(175, 3, distances);
+        System.out.println(result);
+        List<Integer> ts = List.of(50, 55, 56, 57, 58);
+        System.out.println(main(163, 3, ts));
+    }
+}
