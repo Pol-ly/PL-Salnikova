@@ -1,0 +1,55 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите индекс 10 ≤ i ≤ 100000: ");
+        int i = scanner.nextInt();
+        if (i < 10 || i > 100000){
+            System.out.println("Индекс должен быть в диапазоне от 10 до 100000, попробуйте ещё раз.");
+            return;
+        }
+        String fNum = cFib(i);
+        System.out.println("F(" + i + ") = " + fNum);
+        Map<Character, Integer> kCifrs = cifrsK(fNum);
+        printResult(kCifrs);
+    }
+    private static String cFib(int n){
+        if (n == 0) return "0";
+        java.math.BigInteger a = java.math.BigInteger.ZERO;
+        java.math.BigInteger b = java.math.BigInteger.ONE;
+        for (int bit = Integer.highestOneBit(n); bit != 0; bit >>>= 1) {
+            java.math.BigInteger d = a.multiply(b.shiftLeft(1).subtract(a));
+            java.math.BigInteger e = a.multiply(a).add(b.multiply(b));
+            a = d;
+            b = e;
+            if ((n & bit) != 0){
+                java.math.BigInteger c = a.add(b);
+                a = b;
+                b = c;
+            }
+        }
+        return a.toString();
+    }
+    private static Map<Character, Integer> cifrsK(String number){
+        Map<Character, Integer> kCifrs = new HashMap<>();
+        for (char c : number.toCharArray()) {
+            kCifrs.put(c, kCifrs.getOrDefault(c, 0) + 1);
+        }
+        return kCifrs;
+    }
+    private static void printResult(Map<Character, Integer> kCifrs){
+        char maxDigit = '0';
+        int maxCount = 0;
+        for (Map.Entry<Character, Integer> entry : kCifrs.entrySet()){
+            char digit = entry.getKey();
+            int count = entry.getValue();
+            if (count > maxCount || (count == maxCount && digit > maxDigit)){
+                maxCount = count;
+                maxDigit = digit;
+            }
+        }
+        System.out.println("Результат: [(" + maxCount + ", " + maxDigit + ")]");
+    }
+}
