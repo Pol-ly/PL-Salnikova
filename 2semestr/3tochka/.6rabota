@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Сколько палочек? ");
+        long n = scanner.nextLong();
+        if (win(n)){
+            System.out.println("Спойлер: Саша выиграет.");
+        } 
+        else{
+            System.out.println("Спойлер: Таня выиграет.");
+        }
+    }
+    public static boolean win(long n){
+        if (n == 1) return true;
+        if (n == 2) return true;
+        if (n % 2 != 0) {
+            return !win(n - 1); 
+        } 
+        else{
+            boolean one = !win(n - 1);
+            boolean two = !win(n / 2);
+            return one || two;
+        }
+    }
+}
