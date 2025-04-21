@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите число: ");
+        int n = scanner.nextInt();
+        System.out.print("Введите начальную степень: ");
+        int n1 = scanner.nextInt();
+        boolean result = Cifri(n, n1);
+        if (result){
+            System.out.println("Условие выполняется.");
+        } 
+        else{
+            System.out.println("Условие НЕ выполняется.");
+        }
+        scanner.close();
+    }
+    public static boolean Cifri(int n, int n1){
+        String num = Integer.toString(n);
+        int[] chisla = new int[num.length()];
+        for (int i = 0; i < num.length(); i++){
+            chisla[i] = num.charAt(i) - '0';
+        }
+        int t = 0;
+        int power = n1;
+        for (int chislo : chisla){
+            t += Math.pow(chislo, power);
+            power++;
+        }
+        if (n == 0 || t % n != 0){
+            return false;
+        }
+        int a = t / n;
+        return (a == 1 || a == 2 || a == 4 || a == 8 || a == 16 || a == 32 || a == 64);
+    }
+}
