@@ -1,0 +1,26 @@
+import java.util.Arrays;
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите все веса клиентов (через пробел): ");
+        String s = scanner.nextLine();
+        String[] wes = s.split(" ");
+        Arrays.sort(wes, (a, b) -> {
+            int A = chislo(a);
+            int B = chislo(b);
+            return Integer.compare(A, B);
+        });
+        System.out.println("Список весов после сортировки: ");
+        System.out.println(String.join(" ", wes));
+    }
+    private static int chislo(String num) {
+        int sum = 0;
+        for (char c : num.toCharArray()) {
+            if (Character.isDigit(c)) {
+                sum += Character.getNumericValue(c);
+            }
+        }
+        return sum;
+    }
+}
