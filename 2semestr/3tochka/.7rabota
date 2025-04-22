@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Сколько палочек? ");
+        long n = scanner.nextLong();
+        long ts = TanyaSticks(n);
+        System.out.println("У Тани: " + ts + " палочки/палочек.");
+    }
+    public static long TanyaSticks(long n){
+        long ts = 0;
+        boolean tt = true;
+        while (n > 0){
+            if (tt){
+                long t = move(n);
+                ts += t;
+                n -= t;
+            } 
+            else{
+                long t = move(n);
+                n -= t;
+            }
+            tt = !tt;
+        }
+        return ts;
+    }
+    private static long move(long n){
+        if (n % 2 == 0){
+            return Math.max(1, n / 2);
+        } 
+        else{
+            return 1;
+        }
+    }
+}
