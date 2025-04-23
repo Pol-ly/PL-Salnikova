@@ -1,0 +1,43 @@
+import java.util.Random;
+public class Main{
+    public static void main(String[] args) {
+        Random r = new Random();
+        int[] kod = new int[4];
+        for (int i = 0; i < 4; i++){
+            kod[i] = r.nextInt(10);
+        }
+        System.out.println("Рандомно загадано 4 числа. Процесс угадайки: ");
+        int popytki = 0;
+        boolean ugadano = false;
+        while (popytki < 20 && !ugadano){
+            popytki++;
+            int[] Popytka = new int[4];
+            for (int i = 0; i < 4; i++) {
+                Popytka[i] = r.nextInt(10);
+            }
+            System.out.print("Попытка " + popytki + ": ");
+            Chisla(Popytka);
+            int sovpadeniya = 0;
+            for (int i = 0; i < 4; i++){
+                if (Popytka[i] == kod[i]){
+                    sovpadeniya++;
+                }
+            }
+            System.out.println("Всего совпадений: " + sovpadeniya);
+            if (sovpadeniya == 4) {
+                ugadano = true;
+                System.out.println("Код угадан за " + popytki + " попыток/тки.");
+            }
+        }
+        if (!ugadano){
+            System.out.print("Код не угадан. Загадано: ");
+            Chisla(kod);
+        }
+    }
+    static void Chisla(int[] chisla){
+        for (int chislo : chisla){
+            System.out.print(chislo + " ");
+        }
+        System.out.println();
+    }
+}
