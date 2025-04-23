@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n; // всего людей
+        int start; // с кого начать
+        System.out.println("Сколько игроков?");
+        n = sc.nextInt();
+        System.out.println("Какой номер у первого игрока?");
+        start = sc.nextInt();
+        if (start < 1 || start > n) {
+            System.out.println("Неверный номер.");
+            return;
+        }
+        List<Integer> ost = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            ost.add(i);
+        }
+        List<Integer> vib = new ArrayList<>(); //выбывшие
+        int tek = start - 1;
+        while (!ost.isEmpty()) { 
+            tek = (tek + 2) % ost.size();
+            int kto = ost.remove(tek);
+            vib.add(kto);
+            System.out.println("Выбыл №" + kto + " Остались: " + ost);
+        }
+        System.out.println("\nВсе выбыли в порядке:");
+        System.out.println(vib);
+        System.out.println("Победитель: №" + vib.get(vib.size() - 1));
+        
+        sc.close();
+    }
+}
