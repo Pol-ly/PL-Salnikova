@@ -1,0 +1,46 @@
+import java.util.Scanner;
+import java.util.HashMap; //реализация "словаря"
+import java.util.Map; //"словарь"
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите римское число (от I до MMMMCMXCIX): ");
+        String romNum = scanner.nextLine().toUpperCase(); // Переводим в верхний регистр
+        int arNum = toArabic(romNum);
+        if (arNum <= 1 || arNum >= 10000){
+            System.out.println("Перечитайте условие ввода и попробуйте ещё раз.");
+        } 
+        else{
+            System.out.println("Арабское число: " + arNum);
+        }
+        scanner.close();
+    }
+    public static int toArabic(String roman){
+        //Создаем словарь для соответствия римских и арабских чисел
+        Map<Character, Integer> romToAr = new HashMap<>();
+        romToAr.put('I', 1);
+        romToAr.put('V', 5);
+        romToAr.put('X', 10);
+        romToAr.put('L', 50);
+        romToAr.put('C', 100);
+        romToAr.put('D', 500);
+        romToAr.put('M', 1000);
+        int result = 0;
+        int a = 0;
+        //Идем по строке справа налево
+        for (int i = roman.length() - 1; i >= 0; i--){
+            char currentChar = roman.charAt(i);
+            int b = romToAr.get(currentChar);
+            //Если текущее число меньше предыдущего, вычитаем его
+            if (b < a){
+                result -= b;
+            } 
+            else{
+                result += b;
+            }
+            a = b;
+        }
+
+        return result;
+    }
+}
