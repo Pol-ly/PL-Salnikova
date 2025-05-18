@@ -1,0 +1,29 @@
+public class Main{
+    public static int fusc(int n){
+        //базовые случаи из условий
+        if (n == 0){
+            return 0;
+        }
+        if (n == 1){
+            return 1;
+        }
+        //если n чётное
+        if (n % 2 == 0){
+            return fusc(n / 2);
+        }
+        //если n нечётное
+        else{
+            int half = (n - 1) / 2;
+            return fusc(half) + fusc(half + 1);
+        }
+    }
+    //главный метод для проверки работы функции
+    public static void main(String[] args){
+        System.out.println("fusc(0) = " + fusc(0)); //0
+        System.out.println("fusc(1) = " + fusc(1)); //1
+        System.out.println("fusc(2) = " + fusc(2)); //1
+        System.out.println("fusc(3) = " + fusc(3)); //2
+        System.out.println("fusc(4) = " + fusc(4)); //1
+        System.out.println("fusc(5) = " + fusc(5)); //3
+    }
+}
