@@ -1,0 +1,32 @@
+import java.util.ArrayList; //список
+import java.util.Scanner;
+import java.util.TreeSet; //без дубликатов
+public class Main{
+    public static void main(String[] args){
+        //Список для чисел u
+        ArrayList<Integer> u = new ArrayList<>();
+        u.add(1); //Начальное число u(0) = 1
+        //Множество без повторов)
+        TreeSet<Integer> nextNum = new TreeSet<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Введите x: ");
+        int x = sc.nextInt();
+        sc.close();
+        for (int i = 0; i < x; i++){
+            int num = u.get(i); //Текущее число из u
+            //Вычисляем y и z
+            int y = 2 * num + 1;
+            int z = 3 * num + 1;
+            //Добавляем в множество (дубликаты пропадут)
+            nextNum.add(y);
+            nextNum.add(z);
+            //Если список ещё не заполнен, берём следующее минимальное число
+            if (i + 1 < x){
+                int next = nextNum.first(); //самое маленькое
+                u.add(next); //Добавляем в u
+                nextNum.remove(next); //Удаляем из nextNum
+            }
+        }
+        System.out.println("Ряд u: " + u);
+    }
+}
