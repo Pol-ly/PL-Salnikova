@@ -1,0 +1,79 @@
+import java.util.LinkedList;
+public class HashTable implements Table {
+    // Хранение одной пары ключ-значение
+    private static class KeyValuePara{
+        String key;
+        String value;
+        KeyValuePara(String key1, String value1){
+            key = key1;
+            value = value1;
+        }
+    }
+
+    private static final int SIZE = 10; // Размер массива
+    private LinkedList<KeyValuePara>[] table; // Массив списков
+    private int count; // Количество элементов
+    
+     @SuppressWarnings("unchecked") // Подавление предупреждения компилятора
+    public HashTable() {
+        table = new LinkedList[SIZE];
+        count = 0;
+    }
+    
+    // Определение позиции в массиве
+    private int position(String key){
+        int hash = key.hashCode();
+        int index = Math.abs(hash) % SIZE;
+        return index;
+    }
+    
+    @Override
+    public void put(String key, String value){
+        int index = position(key);
+        if (table[index] == null){
+            table[index] = new LinkedList<>();
+        }
+        for (KeyValuePara para : table[index]){
+            if (para.key.equals(key)){
+                para.value = value;
+                return;
+            }
+        }
+        table[index].add(new KeyValuePara(key, value));
+        count++;
+    }
+
+    @Override
+    public String get(String key) {
+        int index = position(key);
+        if (table[index] == null){
+            return null;
+        }
+        for (KeyValuePara para : table[index]){
+            if (para.key.equals(key)){
+                return para.value;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void remove(String key){
+        int index = position(key);
+        if (table[index] == null){
+            return;
+        }
+        for (KeyValuePara para : table[index]){
+            if (para.key.equals(key)){
+                table[index].remove(para);
+                count--;
+                return;
+            }
+        }
+    }
+
+    @Override
+    public int size() {
+        return count;
+    }
+}
