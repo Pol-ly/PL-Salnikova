@@ -4,7 +4,6 @@ import { Button } from '@consta/uikit/Button';
 import { TextField } from '@consta/uikit/TextField';
 import { Card } from '@consta/uikit/Card';
 import { Modal } from '@consta/uikit/Modal';
-// ИСПРАВЛЕННЫЙ ИМПОРТ ИКОНОК:
 import { IconAdd } from '@consta/icons/IconAdd';
 import { IconTrash } from '@consta/icons/IconTrash';
 import { IconClose } from '@consta/icons/IconClose';
