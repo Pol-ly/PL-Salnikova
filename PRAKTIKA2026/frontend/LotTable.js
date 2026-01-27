@@ -106,7 +106,6 @@ export default function LotTable() {
         />
       )}
 
-      {/* Форма создания лота */}
       <Modal isOpen={modalOpen} hasOverlay onClickOutside={() => setModalOpen(false)}>
         <Card style={{ width: 500, padding: 24 }}>
           <h2 style={{ marginTop: 0, marginBottom: 24 }}>Новый лот</h2>
